@@ -1,6 +1,18 @@
 {
-  "name": "app",
-  "proxy": {
-    "command": "python app.py runserver 0.0.0.0:$PORT"
-  }
+    "name": "ussd-lambda",
+    "profile": "apex-up-profile",
+    "regions": [
+        "eu-west-1"
+    ],
+    "lambda": {
+        "memory": 128,
+        "accelerate": true
+    },
+    "environment": {
+        "URL_1": "https://www.google.com/",
+        "ENV_VARS": "This are not encrypted in the OSS version"
+    },
+    "proxy": {
+        "command": "python app.py runserver 0.0.0.0:$PORT"
+    }
 }
