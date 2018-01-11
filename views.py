@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 
-# setup urls/routing and views
+# setup views
 
 
 def home_view(request):
