@@ -32,6 +32,8 @@
             "find .pypath/ -name '*METADATA' -type f -delete",
             "find .pypath/ -name '*RECORD' -type f -delete",
             "find .pypath/ -name '*WHEEL' -type f -delete",
+            "find .pypath/ -name '*test_*.py' -type f -delete",
+            "find .pypath/ -path '*/test/*' -delete",
             "find .pypath/ -name '*.js' -type f -delete"
         ]
     }
