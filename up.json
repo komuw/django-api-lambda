@@ -13,6 +13,26 @@
         "ENV_VARS": "This are not encrypted in the OSS version"
     },
     "proxy": {
-        "command": "python app.py runserver 0.0.0.0:$PORT"
+        "command": "python app.py runserver 0.0.0.0:$PORT",
+        "timeout": 25,
+        "listen_timeout": 25
+    },
+    "hooks": {
+        "postbuild": [
+            "find .pypath/ -name '*.pyc' -type f -delete",
+            "find .pypath/ -name '*.pyo' -type f -delete",
+            "find .pypath/ -name '*.rst' -type f -delete",
+            "find .pypath/ -name '*.json' -type f -delete",
+            "find .pypath/ -name '*.txt' -type f -delete",
+            "find .pypath/ -name '*.md' -type f -delete",
+            "find .pypath/ -name '*.yml' -type f -delete",
+            "find .pypath/ -name '*.yaml' -type f -delete",
+            "find .pypath/ -name '*PKG-INFO' -type f -delete",
+            "find .pypath/ -name '*INSTALLER' -type f -delete",
+            "find .pypath/ -name '*METADATA' -type f -delete",
+            "find .pypath/ -name '*RECORD' -type f -delete",
+            "find .pypath/ -name '*WHEEL' -type f -delete",
+            "find .pypath/ -name '*.js' -type f -delete"
+        ]
     }
 }
