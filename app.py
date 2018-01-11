@@ -22,7 +22,16 @@ settings.configure(
 
 # setup urls/routing and views
 def home_view(request):
-    return HttpResponse('<h1>Hello from django and up!</h1>')
+    import randomfile
+
+    MY_VAR = randomfile.MY_VAR
+    f = open("randomfile.py","r")
+    file_contents = f.read()
+    f.close()
+
+    return HttpResponse("""<h1>Hello from django and up!.</h1>
+                           <p>contents of randomfile.py are:: <br/>{file_contents}</p>
+                           <p>and MY_VAR is:: {MY_VAR}</p>""".format(file_contents=file_contents, MY_VAR=MY_VAR))
 
 
 urlpatterns = (
