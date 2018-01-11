@@ -13,6 +13,8 @@
         "ENV_VARS": "This are not encrypted in the OSS version"
     },
     "proxy": {
-        "command": "python manage.py runserver 0.0.0.0:$PORT"
+        "command": "python app.py runserver 0.0.0.0:$PORT",
+        "timeout": 25,
+        "listen_timeout": 25
     }
 }
