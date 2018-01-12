@@ -1,0 +1,17 @@
+initial_screen: Welcome
+
+Welcome:
+  type: input_screen
+  text: Welcome to ussd on Lambda demo
+  input_identifier: name
+  next_screen: enter_age
+
+enter_age:
+  type: input_screen
+  text: Enter your age
+  input_identifier: age
+  next_screen: show_details
+
+show_details:
+  type: quit_screen
+  text: You have entered name as {{name}} and age as {{age}}
