@@ -23,16 +23,7 @@
         ],
         "postbuild": [
             "find .pypath/ -name '*.pyc' -type f -delete",
-            "find .pypath/ -name '*.pyo' -type f -delete",
-            "find .pypath/ -name '*.rst' -type f -delete",
-            "find .pypath/ -name '*.md' -type f -delete",
-            "find .pypath/ -name '*.yml' -type f -delete",
-            "find .pypath/ -name '*.yaml' -type f -delete",
-            "find .pypath/ -name '*PKG-INFO' -type f -delete",
-            "find .pypath/ -name '*INSTALLER' -type f -delete",
-            "find .pypath/ -name '*METADATA' -type f -delete",
-            "find .pypath/ -name '*RECORD' -type f -delete",
-            "find .pypath/ -name '*WHEEL' -type f -delete"
+            "find .pypath/ -name '*.pyo' -type f -delete"
         ]
     }
 }
