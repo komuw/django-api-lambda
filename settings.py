@@ -9,9 +9,14 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 ROOT_URLCONF = 'urls'
 WSGI_APPLICATION = 'wsgi.application'
 
-INSTALLED_APPS = [
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
     'ussd.apps.UssdConfig',
-]
+)
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 

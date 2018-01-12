@@ -9,8 +9,11 @@ A simple example showing how to run a ussd app (or any django[1] app really) in 
 $ up
 ```
 
-## dev
-> `autopep8 --experimental --in-place -r -aaaaaaaaaaaaaaaaaaaaaaa .`                          
+## development
+> `virtualenv -p python3 .venv`                             
+> `source .venv/bin/activate`                            
+> `pip3 install -r dev_requirements.txt`                        
+> `autopep8 --experimental --in-place -r -aaaaaa .`                          
 > `flake8 .`                        
 
 ## Links
