@@ -35,8 +35,18 @@ STATIC_URL = '/static/'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
+        'ENGINE':
+        'django.db.backends.postgresql',
+        'NAME':
+        'ryiafstd',
+        'USER':
+        'ryiafstd',
+        'PASSWORD':
+        'zVrRQGR5Vd8h1695jnNkYi4LFPdZauLt',
+        'HOST':
+        'horton.elephantsql.com',
+        'PORT':
+        '5432',
     }
 }
 
