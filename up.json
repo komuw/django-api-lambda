@@ -13,11 +13,14 @@
         "ENV_VARS": "This are not encrypted in the OSS version"
     },
     "proxy": {
-        "command": "python app.py runserver 0.0.0.0:$PORT",
+        "command": "python34 app.py runserver 0.0.0.0:$PORT",
         "timeout": 25,
         "listen_timeout": 25
     },
     "hooks": {
+        "build": [
+            "mkdir -p .pypath/ && pip3 install -r requirements.txt -t .pypath/"
+        ],
         "postbuild": [
             "find .pypath/ -name '*.pyc' -type f -delete",
             "find .pypath/ -name '*.pyo' -type f -delete",
@@ -34,8 +37,7 @@
             "find .pypath/ -name '*WHEEL' -type f -delete",
             "find .pypath/ -name '*test_*.py' -type f -delete",
             "find .pypath/ -path '*/test/*' -delete",
-            "find .pypath/ -name '*.js' -type f -delete",
-            "python3 app.py collectstatic && python3 app.py migrate"
+            "find .pypath/ -name '*.js' -type f -delete"
         ]
     }
 }

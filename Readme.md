@@ -12,8 +12,7 @@ $ up
 ## development
 > `virtualenv -p python3 .venv`                             
 > `source .venv/bin/activate`                            
-> `pip3 install -r dev_requirements.txt`                        
-> `python app.py collectstatic && python app.py migrate`             
+> `pip3 install -r dev_requirements.txt`                                   
 > `up start`                  
 > `autopep8 --experimental --in-place -r -aaaaaa .`                          
 > `flake8 .`                        
