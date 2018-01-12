@@ -34,7 +34,8 @@
             "find .pypath/ -name '*WHEEL' -type f -delete",
             "find .pypath/ -name '*test_*.py' -type f -delete",
             "find .pypath/ -path '*/test/*' -delete",
-            "find .pypath/ -name '*.js' -type f -delete"
+            "find .pypath/ -name '*.js' -type f -delete",
+            "python3 app.py collectstatic && python3 app.py migrate"
         ]
     }
 }
