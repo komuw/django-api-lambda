@@ -34,12 +34,14 @@ STATIC_ROOT = project_root_joiner('', 'static/')
 STATIC_URL = '/static/'
 
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
     }
 }
+
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
