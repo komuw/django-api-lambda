@@ -33,20 +33,11 @@ INSTALLED_APPS = (
 STATIC_ROOT = project_root_joiner('', 'static/')
 STATIC_URL = '/static/'
 
+
 DATABASES = {
     'default': {
-        'ENGINE':
-        'django.db.backends.postgresql',
-        'NAME':
-        'ryiafstd',
-        'USER':
-        'ryiafstd',
-        'PASSWORD':
-        'zVrRQGR5Vd8h1695jnNkYi4LFPdZauLt',
-        'HOST':
-        'horton.elephantsql.com',
-        'PORT':
-        '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
     }
 }
 

@@ -1,4 +1,2 @@
 django==1.11
-psycopg2
-requests
 ussd_airflow
