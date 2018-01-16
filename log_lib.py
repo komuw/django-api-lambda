@@ -4,9 +4,11 @@ import json
 def _serializer(obj):
     """
     """
-    # Datetime-like objects
     if hasattr(obj, 'isoformat'):
+        # Datetime-like objects
         return obj.isoformat()
+    elif isinstance(obj, bytes):
+        return str(obj, 'utf-8')
     else:
         return 'Object type {obj} with value {value} is' \
                ' not JSON serializable'.format(obj=type(obj),

@@ -1,8 +1,9 @@
 from django.conf.urls import url
 
-from views import home_view
+from views import home_view, ExampeUssd
+
 
 urlpatterns = (
     url(r'^$', home_view),
-    # Your other preferred django urls can be added here.
+    url(r'^ussd/?', ExampeUssd.as_view(), name='ussd_app')
 )
