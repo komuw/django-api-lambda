@@ -1,7 +1,7 @@
 
 # ussd lambda
 
-A simple example showing how to run a ussd app (or any django[1] app really) in AwS lambda using up[2].
+A simple example showing how to run a ussd app (or any django[1] app really) in AWS lambda using up[2].
 
 ## Deploy
 
