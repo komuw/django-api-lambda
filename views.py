@@ -32,7 +32,7 @@ class ExampeUssd(UssdView):
             phone_number=msisdn,
             session_id=session_id,
             ussd_input=user_input,
-            service_code=req.data["serviceCode"],
+            service_code=req.data.get("serviceCode", ""),
             language=req.data.get("language", "en")
         )
 
