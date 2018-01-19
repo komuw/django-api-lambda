@@ -1,2 +1,4 @@
 django==1.11
 ussd_airflow
+django-dynamodb-sessions
+boto3

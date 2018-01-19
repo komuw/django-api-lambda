@@ -1,5 +1,7 @@
 import os
 
+import boto3
+
 
 def here(*args):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), *args)
@@ -35,14 +37,17 @@ STATIC_URL = '/static/'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     # 'default': {
+#     #     'ENGINE': 'django.db.backends.sqlite3',
+#     #     'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
+#     # }
+# }
 
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 DEFAULT_USSD_SCREEN_JOURNEY = "ussd_journey.yaml"
+
+DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(profile_name='apex-up-profile')
+SESSION_ENGINE = 'dynamodb_sessions.backends.cached_dynamodb'
