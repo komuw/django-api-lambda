@@ -36,13 +36,8 @@ STATIC_ROOT = project_root_joiner('', 'static/')
 STATIC_URL = '/static/'
 
 
-
-# DATABASES = {
-#     # 'default': {
-#     #     'ENGINE': 'django.db.backends.sqlite3',
-#     #     'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
-#     # }
-# }
+# dont specify a Database
+# DATABASES = {}
 
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
@@ -50,6 +45,7 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 DEFAULT_USSD_SCREEN_JOURNEY = "ussd_journey.yaml"
 
 DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(profile_name='apex-up-profile')
-SESSION_ENGINE = 'dynamodb_sessions.backends.cached_dynamodb' # replace with;
-# SESSION_ENGINE = 'dynamodb_sessions.backends.dynamodb'
+SESSION_ENGINE = 'dynamodb_sessions.backends.dynamodb'
+# you can also use the cache backend to reduce hits to dynamoDB
+# SESSION_ENGINE = 'dynamodb_sessions.backends.cached_dynamodb'
 DYNAMODB_SESSIONS_TABLE_NAME = "ussd-lambda-table"

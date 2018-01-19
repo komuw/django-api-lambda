@@ -1,4 +1,4 @@
 django==1.11
 ussd_airflow
-django-dynamodb-sessions
+https://github.com/gtaylor/django-dynamodb-sessions/archive/master.zip
 boto3
