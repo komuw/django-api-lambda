@@ -52,3 +52,4 @@ DEFAULT_USSD_SCREEN_JOURNEY = "ussd_journey.yaml"
 DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(profile_name='apex-up-profile')
 SESSION_ENGINE = 'dynamodb_sessions.backends.cached_dynamodb' # replace with;
 # SESSION_ENGINE = 'dynamodb_sessions.backends.dynamodb'
+DYNAMODB_SESSIONS_TABLE_NAME = "ussd-lambda-table"
