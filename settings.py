@@ -50,4 +50,5 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 DEFAULT_USSD_SCREEN_JOURNEY = "ussd_journey.yaml"
 
 DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(profile_name='apex-up-profile')
-SESSION_ENGINE = 'dynamodb_sessions.backends.cached_dynamodb'
+SESSION_ENGINE = 'dynamodb_sessions.backends.cached_dynamodb' # replace with;
+# SESSION_ENGINE = 'dynamodb_sessions.backends.dynamodb'
