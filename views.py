@@ -21,7 +21,7 @@ class ExampeUssd(UssdView):
     def post(self, req):
         session_id = req.data["sessionId"]
         msisdn = req.data["phoneNumber"].strip("+")
-        user_input = req.data["text"]
+        user_input = req.data["user_input"]
 
         logger = structlog.get_logger(__name__).bind(sessionId=session_id)
         logger.info("new_ussd_request",
