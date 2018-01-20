@@ -23,7 +23,7 @@ jobs:
                 apt-get -y update
                 apt -y install \
                             curl \
-                            python \
+                            python3 \
                             software-properties-common \
                             build-essential \
                             nano
