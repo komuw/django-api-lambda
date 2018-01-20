@@ -59,10 +59,10 @@ workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - build
+      - test
       - deploy:
           requires:
-            - build
+            - test
           filters:
             branches:
               only: master
