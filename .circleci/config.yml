@@ -49,7 +49,7 @@ jobs:
         - run:
             name: add cred to up.json
             command: |
-                envsubst < up.json > edited_up.json
+                envsubst '${UP_AWS_ACCESS_KEY_ID} ${UP_SECRET_ACCESS_KEY}' < up.json > edited_up.json
                 mv edited_up.json up.json
         - run:
             name: deploy development
