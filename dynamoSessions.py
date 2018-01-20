@@ -75,7 +75,6 @@ class SessionStore(SessionBase):
         :rtype: dict
         :returns: The de-coded session data, as a dict.
         """
-        self.logger.info('NEW_ONE_GOT_CALLED_AHA')
         response = self.table.get_item(
             Key={'session_key': self.session_key},
             ConsistentRead=ALWAYS_CONSISTENT)
@@ -132,7 +131,6 @@ class SessionStore(SessionBase):
         :raises: ``CreateError`` if ``must_create`` is ``True`` and a session
             with the current session key already exists.
         """
-        self.logger.info('YEAH_NEW_SAVE_AHA')
         # create a session_key if none is provided already
         self._get_or_create_session_key()
         update_kwargs = {
