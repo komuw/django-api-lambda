@@ -45,7 +45,7 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 DEFAULT_USSD_SCREEN_JOURNEY = "ussd_journey.yaml"
 
 DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(profile_name='apex-up-profile')
-SESSION_ENGINE = 'dynamodb_sessions.backends.dynamodb'
-# you can also use the cache backend to reduce hits to dynamoDB
-# SESSION_ENGINE = 'dynamodb_sessions.backends.cached_dynamodb'
 DYNAMODB_SESSIONS_TABLE_NAME = "ussd-lambda-table"
+SESSION_ENGINE = 'dynamoSessions'
+# you can also use a cache backend to reduce hits to dynamoDB
+# see: https://github.com/gtaylor/django-dynamodb-sessions/blob/master/dynamodb_sessions/backends/cached_dynamodb.py
