@@ -50,6 +50,10 @@ jobs:
             name: deploy development
             command: |
                 up
+        - run:
+            name: show app url
+            command: |
+                up url
 
 workflows:
   version: 2
