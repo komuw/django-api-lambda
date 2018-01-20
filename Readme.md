@@ -31,7 +31,7 @@ curl -X POST -H "Content-Type: application/json" \
 
 ## AWS policy
 `up` requires a [policy](https://up.docs.apex.sh/#aws_credentials.iam_policy_for_up_cli) to access various resources.         
-Also the user you created for the `` profile will require policy access to dynamoDB.         
+Also the user you created for the `up` profile will require policy access to dynamoDB.         
 Those two policies can be combined into:         
 ```bash
 {
