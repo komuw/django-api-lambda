@@ -12,7 +12,7 @@ if __name__ == "__main__":
     logging.basicConfig(
         format="%(message)s\n",
         stream=sys.stdout,
-        level=logging.INFO,
+        level=logging.DEBUG,
     )
     structlog.configure(
         logger_factory=structlog.stdlib.LoggerFactory(),
