@@ -5,7 +5,7 @@
         "eu-west-1"
     ],
     "lambda": {
-        "memory": 128,
+        "memory": 512,
         "accelerate": true
     },
     "environment": {
