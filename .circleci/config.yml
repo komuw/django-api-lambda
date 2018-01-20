@@ -70,4 +70,4 @@ workflows:
             - test
           filters:
             branches:
-              only: secrets
+              only: master
