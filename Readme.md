@@ -23,10 +23,11 @@ region = someAWSregion
 > `python3 app.py runserver 0.0.0.0:9090`                  
 > `autopep8 --experimental --in-place -r -aaaaaa .`                          
 > `flake8 .`                        
+> to test out the app;
 ```
 curl -X POST -H "Content-Type: application/json" \
-    -d '{"phonessionId": "10p5","text":"1", "serviceCode": "312"}' \
-    "http://localhost:$PORT/ussd"
+    -d '{"phoneNumber": "254700000000", "sessionId": "mysessionID1", "user_input":"1"}' \
+    "http://localhost:9090/ussd"
 ```
 
 ## AWS policy
