@@ -10,7 +10,7 @@ from log_lib import KeyValueRenderer
 if __name__ == "__main__":
     # Set up structured logging
     logging.basicConfig(
-        format="%(message)s",
+        format="%(message)s\n",
         stream=sys.stdout,
         level=logging.INFO,
     )
