@@ -24,6 +24,7 @@ jobs:
                 apt -y install \
                             curl \
                             python3 \
+                            python3-pip \
                             software-properties-common \
                             build-essential \
                             nano
