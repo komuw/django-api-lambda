@@ -46,6 +46,11 @@ jobs:
             command: |
                 up --version
         - run:
+            name: add cred to up.json
+            command: |
+                envsubst < up.json > edited_up.json
+                mv edited_up.json up.json
+        - run:
             name: deploy development
             command: |
                 up

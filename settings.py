@@ -44,7 +44,18 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 DEFAULT_USSD_SCREEN_JOURNEY = "ussd_journey.yaml"
 
-DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(profile_name='apex-up-profile')
+UP_ENVIRONMENT = os.getenv("UP_ENVIRONMENT", None)
+
+if UP_ENVIRONMENT:
+    # this variables will be setup by CI,
+    # during CI, we'll edit up.json and add this env vars
+    DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID = os.getenv("DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID")
+    DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY = os.getenv("DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY")
+    DYNAMODB_SESSIONS_AWS_REGION_NAME = os.getenv("DYNAMODB_SESSIONS_AWS_REGION_NAME", "eu-west-1")
+else:
+    DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(profile_name='apex-up-profile')
+
+
 DYNAMODB_SESSIONS_TABLE_NAME = "ussd-lambda-table"
 SESSION_ENGINE = 'dynamoSessions'
 # you can also use a cache backend to reduce hits to dynamoDB

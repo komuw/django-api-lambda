@@ -22,6 +22,14 @@ ALWAYS_CONSISTENT = getattr(
 _BOTO_SESSION = getattr(
     settings, 'DYNAMODB_SESSIONS_BOTO_SESSION', False)
 
+
+if not _BOTO_SESSION:
+    AWS_ACCESS_KEY_ID = getattr(settings, 'DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID', False)
+    AWS_SECRET_ACCESS_KEY = getattr(settings, 'DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY', False)
+    AWS_REGION_NAME = getattr(settings, 'DYNAMODB_SESSIONS_AWS_REGION_NAME', False)
+
+
+
 # We'll find some better way to do this.
 _DYNAMODB_CONN = None
 
