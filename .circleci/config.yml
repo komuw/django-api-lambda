@@ -1,0 +1,64 @@
+version: 2
+jobs:
+  test:
+    docker:
+        - image: ubuntu:16.04
+    working_directory: ~/work
+    steps:
+        - checkout
+        - run:
+            name: run tests
+            command: |
+                echo "run tests here"
+
+  deploy:
+    docker:
+        - image: ubuntu:16.04
+    working_directory: ~/work
+    steps:
+        - checkout
+        - run:
+            name: install apt and pip deps
+            command: |
+                apt-get -y update
+                apt -y install \
+                            curl \
+                            python \
+                            software-properties-common \
+                            build-essential \
+                            nano
+        - run:
+            name: create AWS credentials dir
+            command: |
+                mkdir -p ~/.aws
+        - run:
+            name: setup AWS credentials
+            command: |
+                printf """[apex-up-profile]
+                aws_access_key_id = ${UP_AWS_ACCESS_KEY_ID}
+                aws_secret_access_key = ${UP_SECRET_ACCESS_KEY}
+                region = eu-west-1""" > ~/.aws/credentials
+        - run:
+            name: install up
+            command: |
+                curl -sf https://up.apex.sh/install | sh
+        - run:
+            name: check on up
+            command: |
+                up --version
+        - run:
+            name: deploy development
+            command: |
+                up
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
