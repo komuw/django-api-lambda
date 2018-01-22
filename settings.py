@@ -57,7 +57,8 @@ else:
 
 
 DYNAMODB_SESSIONS_TABLE_NAME = "ussd-lambda-table"
-SESSION_ENGINE = 'dynamoSessions'
+# SESSION_ENGINE = 'dynamoSessions'
+SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 # you can also use a cache backend to reduce hits to dynamoDB
 # see: https://github.com/gtaylor/django-dynamodb-sessions/blob/master/dynamodb_sessions/backends/cached_dynamodb.py
 
