@@ -52,7 +52,7 @@ jobs:
                 envsubst '${UP_AWS_ACCESS_KEY_ID} ${UP_SECRET_ACCESS_KEY}' < up.json > edited_up.json
                 mv edited_up.json up.json
         - run:
-            name: deploy development
+            name: deploy staging
             command: |
                 up
         - run:
