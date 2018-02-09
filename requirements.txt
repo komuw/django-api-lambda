@@ -1,3 +1,4 @@
-django==1.11
-ussd_airflow
-boto3
+django==1.11.*
+djangorestframework==3.7.*
+celery==4.*
+boto3==1.5.*

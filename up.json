@@ -1,5 +1,5 @@
 {
-    "name": "ussd-lambda",
+    "name": "django-api-lambda",
     "profile": "apex-up-profile",
     "regions": [
         "eu-west-1"
@@ -22,7 +22,7 @@
     },
     "hooks": {
         "build": [
-            "mkdir -p .pypath/ && pip3 install -r requirements.txt -t .pypath/"
+            "mkdir -p .pypath/ && pip install -r requirements.txt -t .pypath/"
         ],
         "postbuild": [
             "find .pypath/ -name '*.pyc' -type f -delete",

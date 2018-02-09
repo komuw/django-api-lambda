@@ -26,23 +26,17 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    # 'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ussd.apps.UssdConfig',
 )
 
 STATIC_ROOT = project_root_joiner('', 'static/')
 STATIC_URL = '/static/'
 
 
-# dont specify a Database
+# dont specify a Database, we'll use dynamodb
 # DATABASES = {}
 
-
-# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-
-DEFAULT_USSD_SCREEN_JOURNEY = "ussd_journey.yaml"
 
 UP_ENVIRONMENT = os.getenv("UP_ENVIRONMENT", None)
 
@@ -55,18 +49,6 @@ if UP_ENVIRONMENT:
 else:
     DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(profile_name='apex-up-profile')
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-#         # 'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-#     }
-# }
-
-# DYNAMODB_SESSIONS_TABLE_NAME = "ussd-lambda-table"
-# # SESSION_ENGINE = 'dynamoSessions'
-# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-# you can also use a cache backend to reduce hits to dynamoDB
-# see: https://github.com/gtaylor/django-dynamodb-sessions/blob/master/dynamodb_sessions/backends/cached_dynamodb.py
 
 LOGGING = {
     'version': 1,

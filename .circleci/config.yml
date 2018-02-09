@@ -24,9 +24,9 @@ jobs:
                 apt -y install \
                             gettext-base \
                             curl \
-                            python3 \
-                            python3-pip \
+                            python-pip \
                             nano
+                pip install -U pip
         - run:
             name: create AWS credentials dir
             command: |

@@ -1,7 +1,7 @@
 
-# ussd lambda
+# django api lambda
 
-A simple example showing how to run a ussd app (or any django[1] app really) in AWS lambda using up[2].
+A simple example showing how to run a django[1] app in AWS lambda using up[2].
 
 ## Deploy
 
@@ -17,17 +17,16 @@ aws_access_key_id = someKeyId
 aws_secret_access_key = someAccessKey
 region = someAWSregion
 ```
-> `virtualenv -p python3 .venv`                             
+> `virtualenv .venv`                             
 > `source .venv/bin/activate`                            
-> `pip3 install -r dev_requirements.txt`                                   
-> `python3 app.py runserver 0.0.0.0:9090`                  
+> `pip install -r dev_requirements.txt`                                   
+> `python app.py runserver 0.0.0.0:9090`                  
 > `autopep8 --experimental --in-place -r -aaaaaa .`                          
 > `flake8 .`                        
 > to test out the app;
 ```
 curl -X POST -H "Content-Type: application/json" \
-    -d '{"phoneNumber": "254700000000", "sessionId": "mysessionID1", "user_input":"1"}' \
-    "http://localhost:9090/ussd"
+    "http://localhost:9090/someurl"
 ```
  
 ## AWS policy
