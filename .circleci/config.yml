@@ -70,4 +70,4 @@ workflows:
             - test
           filters:
             branches:
-              only: debug
+              only: api
