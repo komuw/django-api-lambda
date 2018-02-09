@@ -1,8 +1,9 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 
-from views import home_view
+import views
 
 
 urlpatterns = (
-    url(r'^$', home_view),
+    url(r'^root/?$', include('rest_framework.urls')),
+    url(r'^process/?$', views.MyApi.as_view()),
 )

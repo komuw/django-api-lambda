@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 )
 
 STATIC_ROOT = project_root_joiner('', 'static/')
