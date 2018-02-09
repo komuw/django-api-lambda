@@ -24,10 +24,14 @@ _BOTO_SESSION = getattr(
 
 
 if not _BOTO_SESSION:
-    AWS_ACCESS_KEY_ID = getattr(settings, 'DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID', False)
-    AWS_SECRET_ACCESS_KEY = getattr(settings, 'DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY', False)
-    AWS_REGION_NAME = getattr(settings, 'DYNAMODB_SESSIONS_AWS_REGION_NAME', False)
-
+    AWS_ACCESS_KEY_ID = getattr(
+        settings, 'DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID', False)
+    AWS_SECRET_ACCESS_KEY = getattr(
+        settings, 'DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY', False)
+    AWS_REGION_NAME = getattr(
+        settings,
+        'DYNAMODB_SESSIONS_AWS_REGION_NAME',
+        False)
 
 
 # We'll find some better way to do this.
@@ -67,7 +71,8 @@ class SessionStore(SessionBase):
     def __init__(self, session_key=None):
         super(SessionStore, self).__init__(session_key)
         self._table = None
-        self.logger = structlog.get_logger(__name__).bind(session_key=session_key)
+        self.logger = structlog.get_logger(
+            __name__).bind(session_key=session_key)
 
     @property
     def table(self):
