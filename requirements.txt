@@ -2,3 +2,4 @@ django==1.11.*
 djangorestframework==3.7.*
 celery==4.*
 boto3==1.5.*
+structlog==18.*
