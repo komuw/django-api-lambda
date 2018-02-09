@@ -29,7 +29,7 @@ curl -X POST -H "Content-Type: application/json" \
     -d '{"phoneNumber": "254700000000", "sessionId": "mysessionID1", "user_input":"1"}' \
     "http://localhost:9090/ussd"
 ```
-
+ 
 ## AWS policy
 `up` requires a [policy](https://up.docs.apex.sh/#aws_credentials.iam_policy_for_up_cli) to access various resources.         
 Also the user you created for the `up` profile will require policy access to dynamoDB.         
