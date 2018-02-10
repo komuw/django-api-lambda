@@ -9,6 +9,7 @@ from rest_framework.decorators import api_view
 
 from django.http import HttpResponse
 
+import tasks
 
 @api_view(('GET',))
 def api_root(request):
@@ -51,4 +52,6 @@ class WebCrawler(APIView):
         """
         logger = structlog.get_logger(__name__).bind(id=request.data['id'])
         logger.info("request_start", data=request.data)
+
+        tasks.add(23, 56)
         return Response(status=status.HTTP_202_ACCEPTED)
