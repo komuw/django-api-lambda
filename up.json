@@ -16,7 +16,7 @@
         "DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY": "${UP_SECRET_ACCESS_KEY}"
     },
     "proxy": {
-        "command": "python app.py runserver 0.0.0.0:$PORT",
+        "command": "python app.py collectstatic --no-color --noinput; python app.py runserver 0.0.0.0:$PORT",
         "timeout": 25,
         "listen_timeout": 25
     },

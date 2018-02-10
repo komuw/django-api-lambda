@@ -34,6 +34,30 @@ INSTALLED_APPS = (
 STATIC_ROOT = project_root_joiner('', 'static/')
 STATIC_URL = '/static/'
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            project_root_joiner('', 'templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            'debug':
+            DEBUG,
+        },
+    },
+]
 
 # dont specify a Database, we'll use dynamodb
 # DATABASES = {}

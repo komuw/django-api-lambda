@@ -3,10 +3,20 @@ import structlog
 
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.reverse import reverse
 from rest_framework.response import Response
-
+from rest_framework.decorators import api_view
 
 from django.http import HttpResponse
+
+
+@api_view(('GET',))
+def api_root(request):
+    return Response({
+        'Crawler': {
+            'WebCrawler': reverse('webcrawler', request=request),
+        },
+    })
 
 
 def home_view(request):
@@ -17,8 +27,20 @@ def home_view(request):
     return HttpResponse("<h1>Hello from django and up modules!</h1>")
 
 
-class MyApi(APIView):
+class WebCrawler(APIView):
     """
+    WebCrawler is a Web Crawler as a service.
+
+    This view accepts requests from customers. Customers call this view with
+    id: a unique id to identify this request
+    target: the particular url that  they would like to crawl
+    callback: the url on their service that we should post(callback) results of our scraping to.
+
+    {
+        "id": "uniqueID",
+        "target": "www.google.com",
+        "callback": "www.example.com/callback"
+    }
     """
     # authentication_classes = (authentication.TokenAuthentication,)
     # permission_classes = (permissions.IsAdminUser,)
@@ -27,5 +49,6 @@ class MyApi(APIView):
         """
         Return a list of all users.
         """
-        req_data = request.data
+        logger = structlog.get_logger(__name__).bind(id=request.data['id'])
+        logger.info("request_start", data=request.data)
         return Response(status=status.HTTP_202_ACCEPTED)
