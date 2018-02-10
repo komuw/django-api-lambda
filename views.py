@@ -54,7 +54,7 @@ class WebCrawler(APIView):
         logger = structlog.get_logger(__name__).bind(id=request.data['id'])
         logger.info("request_start", data=request.data)
 
-        status_code = tasks.crawl(data=request.data)
-        tasks.callback(status_code, request.data)
+        tasks.crawl.delay(data=request.data)
+        # tasks.callback(status_code, request.data)
 
         return Response(status=status.HTTP_202_ACCEPTED)

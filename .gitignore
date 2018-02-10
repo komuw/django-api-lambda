@@ -15,3 +15,7 @@
 
 # Static files
 static/
+
+# celery
+*.pid
+*.log

@@ -21,6 +21,7 @@ region = someAWSregion
 > `source .venv/bin/activate`                            
 > `pip install -r dev_requirements.txt`                                   
 > `python app.py runserver 0.0.0.0:9090`                  
+> `celery worker --app=celeryapp --loglevel=DEBUG --events --concurrency=1`               
 > `autopep8 --experimental --in-place -r -aaaaaa .`                          
 > `flake8 .`                        
 > to test out the app;
