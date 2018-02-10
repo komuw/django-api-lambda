@@ -11,6 +11,7 @@ from django.http import HttpResponse
 
 import tasks
 
+
 @api_view(('GET',))
 def api_root(request):
     return Response({
@@ -39,8 +40,8 @@ class WebCrawler(APIView):
 
     {
         "id": "uniqueID",
-        "target": "www.google.com",
-        "callback": "www.example.com/callback"
+        "target": "http://www.google.com",
+        "callback": "http://www.example.com/callback"
     }
     """
     # authentication_classes = (authentication.TokenAuthentication,)
@@ -53,5 +54,7 @@ class WebCrawler(APIView):
         logger = structlog.get_logger(__name__).bind(id=request.data['id'])
         logger.info("request_start", data=request.data)
 
-        tasks.add(23, 56)
+        status_code = tasks.crawl(data=request.data)
+        tasks.callback(status_code, request.data)
+
         return Response(status=status.HTTP_202_ACCEPTED)
