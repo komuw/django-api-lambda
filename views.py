@@ -10,8 +10,6 @@ from rest_framework.decorators import api_view
 from django.conf import settings
 from django.http import HttpResponse
 
-import tasks
-
 
 @api_view(('GET',))
 def api_root(request):
@@ -66,8 +64,5 @@ class WebCrawler(APIView):
                 'req_id': request.data['id'],
                 'target': request.data['target'],
                 'callback': request.data['callback']})
-
-        tasks.crawl.delay(data=request.data)
-        # tasks.callback(status_code, request.data)
 
         return Response(status=status.HTTP_202_ACCEPTED)
