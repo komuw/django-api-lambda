@@ -108,7 +108,7 @@ try:
         os.environ["AWS_ACCESS_KEY_ID"] = DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID
         os.environ["AWS_SECRET_ACCESS_KEY"] = DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY
         os.environ["AWS_DEFAULT_REGION"] = DYNAMODB_SESSIONS_AWS_REGION_NAME
-        os.environ["AWS_PROFILE"] = "default" # "apex-up-profile"
+        os.environ["AWS_PROFILE"] = "apex-up-profile"
 
         # f= open("~/.hakuna/hatari","w+")
         # prof = '[apex-up-profile]\naws_access_key_id={aws_access_key_id}\naws_secret_access_key={aws_secret_access_key}\nregion={region}'.format(
