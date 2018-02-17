@@ -104,10 +104,6 @@ try:
         DYNAMODB_SESSIONS_AWS_REGION_NAME = os.getenv(
             "DYNAMODB_SESSIONS_AWS_REGION_NAME", "eu-west-1")
 
-        os.environ["AWS_ACCESS_KEY_ID"] = DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID
-        os.environ["AWS_SECRET_ACCESS_KEY"] = DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY
-        os.environ["AWS_DEFAULT_REGION"] = DYNAMODB_SESSIONS_AWS_REGION_NAME
-        os.environ["AWS_PROFILE"] = "apex-up-profile"
 
         DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(
             aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
