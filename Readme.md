@@ -8,7 +8,7 @@ A simple example showing how to run a django[1] app in AWS lambda using up[2].
 ```
 $ up
 ```
-
+ 
 ## development
 > `cat ~/.aws/credentials`
 ```
