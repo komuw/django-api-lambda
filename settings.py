@@ -110,14 +110,29 @@ try:
         os.environ["AWS_DEFAULT_REGION"] = DYNAMODB_SESSIONS_AWS_REGION_NAME
         os.environ["AWS_PROFILE"] = "apex-up-profile"
 
-        # f= open("~/.hakuna/hatari","w+")
-        # prof = '[apex-up-profile]\naws_access_key_id={aws_access_key_id}\naws_secret_access_key={aws_secret_access_key}\nregion={region}'.format(
-        #     aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
-        #     aws_secret_access_key=DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY,
-        #     region=DYNAMODB_SESSIONS_AWS_REGION_NAME
-        # )
-        # f.write(prof)
-        # f.close()
+        logger.info("environ", environ=os.environ)
+        home = os.environ.get('HOME', None)
+        if not home:
+            raise Exception("env has no $HOME")
+        logger.info("Home", home=os.environ['HOME'], file="{home}/.hakuna/hatari".format(home=home))
+
+        if not os.path.exists('{home}/.hakuna'.format(home=home)):
+            os.makedirs('{home}/.hakuna'.format(home=home))
+
+        f= open("{home}/.hakuna/hatari".format(home=home),"w+")
+        prof = '[apex-up-profile]\naws_access_key_id={aws_access_key_id}\naws_secret_access_key={aws_secret_access_key}\nregion={region}'.format(
+            aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY,
+            region=DYNAMODB_SESSIONS_AWS_REGION_NAME
+        )
+        f.write(prof)
+        f.close()
+
+        f= open("{home}/.hakuna/hatari".format(home=home),"r")
+        content = f.read()
+        f.close()
+        logger.info("content", content=content)
+
 
         DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(
             aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
