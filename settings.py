@@ -94,6 +94,7 @@ logger.info("setup_boto")
 try:
     if UP_ENVIRONMENT:
         logger.info("boto_setup", method="access-keys")
+
         # this variables will be setup by CI,
         # during CI, we'll edit up.json and add this env vars
         DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID = os.getenv(
@@ -102,6 +103,22 @@ try:
             "DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY")
         DYNAMODB_SESSIONS_AWS_REGION_NAME = os.getenv(
             "DYNAMODB_SESSIONS_AWS_REGION_NAME", "eu-west-1")
+
+        logger.info('write-out-boto-profile')
+        os.environ["AWS_ACCESS_KEY_ID"] = DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID
+        os.environ["AWS_SECRET_ACCESS_KEY"] = DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY
+        os.environ["AWS_DEFAULT_REGION"] = DYNAMODB_SESSIONS_AWS_REGION_NAME
+        os.environ["AWS_PROFILE"] = "default" # "apex-up-profile"
+
+        # f= open("~/.hakuna/hatari","w+")
+        # prof = '[apex-up-profile]\naws_access_key_id={aws_access_key_id}\naws_secret_access_key={aws_secret_access_key}\nregion={region}'.format(
+        #     aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
+        #     aws_secret_access_key=DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY,
+        #     region=DYNAMODB_SESSIONS_AWS_REGION_NAME
+        # )
+        # f.write(prof)
+        # f.close()
+
         DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(
             aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
             aws_secret_access_key=DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY,
