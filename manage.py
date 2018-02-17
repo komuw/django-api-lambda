@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+import requests
 import structlog
 
 from django.core.management import execute_from_command_line
