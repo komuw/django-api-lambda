@@ -105,21 +105,19 @@ try:
             "DYNAMODB_SESSIONS_AWS_REGION_NAME", "eu-west-1")
 
         logger.info('write-out-boto-profile')
+        lambda_root = os.environ.get('LAMBDA_TASK_ROOT', '/var/task')
+        if not os.path.exists(lambda_root):
+            os.makedirs(lambda_root)
         os.environ["AWS_ACCESS_KEY_ID"] = DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID
         os.environ["AWS_SECRET_ACCESS_KEY"] = DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY
         os.environ["AWS_DEFAULT_REGION"] = DYNAMODB_SESSIONS_AWS_REGION_NAME
         os.environ["AWS_PROFILE"] = "apex-up-profile"
 
+        os.environ['AWS_SHARED_CREDENTIALS_FILE'] = "{lambda_root}/credentials".format(lambda_root=lambda_root)
+        os.environ['AWS_CONFIG_FILE'] = "{lambda_root}/config".format(lambda_root=lambda_root)
         logger.info("environ", environ=os.environ)
-        home = os.environ.get('HOME', None)
-        if not home:
-            raise Exception("env has no $HOME")
-        logger.info("Home", home=os.environ['HOME'], file="{home}/.hakuna/hatari".format(home=home))
 
-        if not os.path.exists('{home}/.hakuna'.format(home=home)):
-            os.makedirs('{home}/.hakuna'.format(home=home))
-
-        f= open("{home}/.hakuna/hatari".format(home=home),"w+")
+        f= open("{lambda_root}/credentials".format(lambda_root=lambda_root),"w+")
         prof = '[apex-up-profile]\naws_access_key_id={aws_access_key_id}\naws_secret_access_key={aws_secret_access_key}\nregion={region}'.format(
             aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
             aws_secret_access_key=DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY,
@@ -128,7 +126,12 @@ try:
         f.write(prof)
         f.close()
 
-        f= open("{home}/.hakuna/hatari".format(home=home),"r")
+        f= open("{lambda_root}/config".format(lambda_root=lambda_root),"w+")
+        prof = '[default]\noutput=json\nregion=eu-west-1'
+        f.write(prof)
+        f.close()
+
+        f= open("{lambda_root}/credentials".format(lambda_root=lambda_root),"r")
         content = f.read()
         f.close()
         logger.info("content", content=content)
