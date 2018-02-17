@@ -59,6 +59,10 @@ jobs:
             name: show app url
             command: |
                 up url
+        - run:
+            name: curl app url
+            command: |
+                curl -vkIL $(up url)
 
 workflows:
   version: 2
