@@ -41,7 +41,6 @@ class WebCrawler(APIView):
     id: a unique id to identify this request
     target: the particular url that  they would like to crawl
     callback: the url on their service that we should post(callback) results of our scraping to.
-
     {
         "id": "uniqueID",
         "target": "http://www.google.com",
