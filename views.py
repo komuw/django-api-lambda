@@ -7,6 +7,7 @@ from rest_framework.reverse import reverse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from django.conf import settings
 from django.http import HttpResponse
 
 import tasks
@@ -27,6 +28,11 @@ def home_view(request):
 
     logger.info("new_request", version=sys.version)
     return HttpResponse("<h1>Hello from django and up modules!</h1>")
+
+
+BOTO_SESSION = getattr(settings, 'DYNAMODB_SESSIONS_BOTO_SESSION', False)
+DYNAMODB_CONN = BOTO_SESSION.resource('dynamodb')
+dynamoTable = DYNAMODB_CONN.Table('api-table')
 
 
 class WebCrawler(APIView):
@@ -53,6 +59,13 @@ class WebCrawler(APIView):
         """
         logger = structlog.get_logger(__name__).bind(id=request.data['id'])
         logger.info("request_start", data=request.data)
+
+        # save to db
+        dynamoTable.put_item(
+            Item={
+                'req_id': request.data['id'],
+                'target': request.data['target'],
+                'callback': request.data['callback']})
 
         tasks.crawl.delay(data=request.data)
         # tasks.callback(status_code, request.data)
