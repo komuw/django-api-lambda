@@ -1,5 +1,4 @@
 django==1.11.*
 djangorestframework==3.7.*
-boto3==1.5.*
 structlog==18.*
 requests==2.18.*
