@@ -89,7 +89,7 @@ LOGGING = {
 
 UP_ENVIRONMENT = os.getenv("UP_ENVIRONMENT", None)
 logger = structlog.get_logger(__name__).bind(UP_ENVIRONMENT=UP_ENVIRONMENT)
-logger.info("setup_boto")
+logger.info("setup_boto", env=os.environ)
 
 try:
     # if UP_ENVIRONMENT:
