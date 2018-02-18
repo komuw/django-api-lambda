@@ -111,7 +111,7 @@ try:
             region_name=DYNAMODB_SESSIONS_AWS_REGION_NAME)
     else:
         logger.info("boto_setup", method="profile")
-        DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(
-            profile_name='apex-up-profile')
+        # DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(
+        #     profile_name='apex-up-profile')
 except Exception as e:
     logger.exception("boto_setup_error", error=str(e))
