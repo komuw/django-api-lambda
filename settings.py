@@ -86,7 +86,7 @@ LOGGING = {
         },
     }
 }
-
+os.environ['AWS_PROFILE'] = 'default'
 UP_ENVIRONMENT = os.getenv("UP_ENVIRONMENT", None)
 logger = structlog.get_logger(__name__).bind(UP_ENVIRONMENT=UP_ENVIRONMENT)
 logger.info("setup_boto", env=os.environ)
