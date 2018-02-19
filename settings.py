@@ -92,36 +92,32 @@ UP_ENVIRONMENT = os.getenv("UP_ENVIRONMENT", None)
 logger = structlog.get_logger(__name__).bind(UP_ENVIRONMENT=UP_ENVIRONMENT)
 
 try:
-    # if UP_ENVIRONMENT:
-    try:
-        del os.environ['AWS_PROFILE']
-    except Exception as e:
-        pass
-    logger.info("boto_setup", method="access-keys", env=os.environ)
+    if UP_ENVIRONMENT:
+        # running in AWS lambda env
+        try:
+            del os.environ['AWS_PROFILE']
+        except Exception as e:
+            pass
+        logger.info("boto_setup", method="access-keys", env=os.environ)
 
-    # this variables will be setup by CI,
-    # during CI, we'll edit up.json and add this env vars
-    DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID = os.getenv(
-        "DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID")
-    DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY = os.getenv(
-        "DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY")
-    DYNAMODB_SESSIONS_AWS_REGION_NAME = os.getenv(
-        "DYNAMODB_SESSIONS_AWS_REGION_NAME", "eu-west-1")
+        # this variables will be setup by CI,
+        # during CI, we'll edit up.json and add this env vars
+        DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID = os.getenv(
+            "DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID")
+        DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY = os.getenv(
+            "DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY")
+        DYNAMODB_SESSIONS_AWS_REGION_NAME = os.getenv(
+            "DYNAMODB_SESSIONS_AWS_REGION_NAME", "eu-west-1")
 
-    BOTO_SESSION = boto3.Session(
-        aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY,
-        region_name=DYNAMODB_SESSIONS_AWS_REGION_NAME)
-
-    # BOTO_SESSION = boto3.Session(
-    #     aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
-    #     aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
-    #     region_name=os.environ['AWS_REGION'])
-    logger.info("BOTO_SESSION", BOTO_SESSION=BOTO_SESSION)
-    # else:
-    #     logger.info("boto_setup", method="profile")
-        # DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(
-        #     profile_name='apex-up-profile')
+        BOTO_SESSION = boto3.Session(
+            aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY,
+            region_name=DYNAMODB_SESSIONS_AWS_REGION_NAME)
+    else:
+        # running locally
+        logger.info("boto_setup", method="profile")
+        BOTO_SESSION = boto3.Session(
+            profile_name='apex-up-profile')
 except Exception as e:
     logger.exception("boto_setup_error", error=str(e))
     pass
