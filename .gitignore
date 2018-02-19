@@ -13,7 +13,7 @@
 
 # dont ignore .pypath. note: up will ignore anything ignored in .gitignore: https://github.com/apex/up/blob/master/docs/configuration.md#ignoring-files
 
-# DO NOT ignore Static files
+# DO NOT ignore Static files: issues/4
 # static/
 
 # celery
