@@ -1,0 +1,32 @@
+{
+    "name": "django-api-lambda",
+    "profile": "apex-up-profile",
+    "regions": [
+        "eu-west-1"
+    ],
+    "lambda": {
+        "memory": 256,
+        "accelerate": true
+    },
+    "environment": {
+        "URL_1": "https://www.google.com/",
+        "ENV_VARS": "This are not encrypted in the OSS version",
+        "UP_ENVIRONMENT": "YES",
+        "DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID": "${UP_AWS_ACCESS_KEY_ID}",
+        "DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY": "${UP_SECRET_ACCESS_KEY}"
+    },
+    "proxy": {
+        "command": "python app.py runserver 0.0.0.0:$PORT",
+        "timeout": 25,
+        "listen_timeout": 25
+    },
+    "hooks": {
+        "build": [
+            "mkdir -p .pypath/ && pip install -r requirements.txt -t .pypath/"
+        ],
+        "postbuild": [
+            "find .pypath/ -name '*.pyc' -type f -delete",
+            "find .pypath/ -name '*.pyo' -type f -delete"
+        ]
+    }
+}
