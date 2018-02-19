@@ -1,5 +1,5 @@
 {
-    "name": "django-api-lambda",
+    "name": "worker-function",
     "profile": "apex-up-profile",
     "regions": [
         "eu-west-1"
