@@ -94,6 +94,8 @@ logger = structlog.get_logger(__name__).bind(UP_ENVIRONMENT=UP_ENVIRONMENT)
 try:
     if UP_ENVIRONMENT:
         # running in AWS lambda env
+
+        STATIC_URL = '/staging/static/'
         try:
             del os.environ['AWS_PROFILE']
         except Exception as e:
