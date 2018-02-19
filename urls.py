@@ -4,6 +4,6 @@ import views
 
 
 urlpatterns = (
-    # url(r'^$', views.api_root, name='api-root'),
-     url(r'^$', views.WebCrawler.as_view(), name='webcrawler'),
+    url(r'^$', views.api_root, name='api-root'),
+    url(r'^staging/crawler/?$', views.WebCrawler.as_view(), name='webcrawler'),
 )
