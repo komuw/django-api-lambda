@@ -28,8 +28,7 @@ def home_view(request):
     return HttpResponse("<h1>Hello from django and up modules!</h1>")
 
 
-BOTO_SESSION = getattr(settings, 'DYNAMODB_SESSIONS_BOTO_SESSION', False)
-DYNAMODB_CONN = BOTO_SESSION.resource('dynamodb')
+DYNAMODB_CONN = settings.BOTO_SESSION.resource('dynamodb')
 dynamoTable = DYNAMODB_CONN.Table('api-table')
 
 
