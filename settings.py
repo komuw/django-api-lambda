@@ -106,10 +106,14 @@ try:
         "DYNAMODB_SESSIONS_AWS_REGION_NAME", "eu-west-1")
 
 
+    # DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(
+    #     aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
+    #     aws_secret_access_key=DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY,
+    #     region_name=DYNAMODB_SESSIONS_AWS_REGION_NAME)
     DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(
-        aws_access_key_id=DYNAMODB_SESSIONS_AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=DYNAMODB_SESSIONS_AWS_SECRET_ACCESS_KEY,
-        region_name=DYNAMODB_SESSIONS_AWS_REGION_NAME)
+        aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
+        aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
+        region_name=os.environ['AWS_REGION'])
     # else:
     #     logger.info("boto_setup", method="profile")
         # DYNAMODB_SESSIONS_BOTO_SESSION = boto3.Session(
