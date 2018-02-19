@@ -15,6 +15,8 @@
 
 # ignore Static files: issues/4
 static/
+*static/
+*/static/
 
 # celery
 *.pid
