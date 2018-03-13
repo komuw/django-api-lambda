@@ -87,7 +87,27 @@ Those two policies can be combined into:
     ]
 }
 ```     
-Tweak that policy to be as restrictive as you want without degrading performance. It is only intended as a guide.                          
+Tweak that policy to be as restrictive as you want without degrading performance. It is only intended as a guide.       
+
+Worker-function-role
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Resource": "*",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "ssm:GetParametersByPath",
+                "dynamodb:*"
+            ]
+        }
+    ]
+}
+```                   
 
 Postman collection: https://www.getpostman.com/collections/b97cc0bc9cd927bdd011
 

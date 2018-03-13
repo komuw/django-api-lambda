@@ -55,13 +55,15 @@ class WebCrawler(APIView):
         Return a list of all users.
         """
         logger = structlog.get_logger(__name__).bind(id=request.data['id'])
-        logger.info("request_start", data=request.data)
+        logger.info("app_request_start", data=request.data)
 
         # save to db
         dynamoTable.put_item(
             Item={
                 'req_id': request.data['id'],
                 'target': request.data['target'],
-                'callback': request.data['callback']})
-
+                'callback': request.data['callback'],
+                'status': 'started'
+                })
+        logger.info("app_request_end")
         return Response(status=status.HTTP_202_ACCEPTED)

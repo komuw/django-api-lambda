@@ -45,6 +45,8 @@ class WorkerCrawler(APIView):
         Return a list of all users.
         """
         logger = structlog.get_logger(__name__).bind(data=request.data)
-        logger.info("request_start")
+        logger.info("worker_request_start")
 
+        # process it
+        logger.info("worker_request_end")
         return Response(status=status.HTTP_202_ACCEPTED)
