@@ -49,36 +49,22 @@ jobs:
         - run:
             name: add cred to up.json
             command: |
-                cd ~/work/app/
-                envsubst '${UP_AWS_ACCESS_KEY_ID} ${UP_SECRET_ACCESS_KEY}' < up.json > edited_up.json
-                mv edited_up.json up.json
-
-                cd ~/work/worker/
                 envsubst '${UP_AWS_ACCESS_KEY_ID} ${UP_SECRET_ACCESS_KEY}' < up.json > edited_up.json
                 mv edited_up.json up.json
 
         - run:
             name: deploy staging
             command: |
-                cd ~/work/app/
-                up
-                cd ~/work/worker/
                 up
 
         - run:
             name: show app url
             command: |
-                cd ~/work/app/
-                up url
-                cd ~/work/worker/
                 up url
 
         - run:
             name: curl app url
             command: |
-                cd ~/work/app/
-                curl -vkIL $(up url)
-                cd ~/work/worker/
                 curl -vkIL $(up url)
 
 workflows:
