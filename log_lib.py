@@ -32,4 +32,4 @@ class KeyValueRenderer(object):
             return json.dumps(v, default=_serializer)
 
         return ', '.join('{k}={v}'.format(k=k, v=serialize(v))
-                         for k, v in event_dict.items())
+                         for k, v in list(event_dict.items()))

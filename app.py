@@ -5,7 +5,7 @@ import structlog
 
 from django.core.management import execute_from_command_line
 
-from log_lib import KeyValueRenderer
+from .log_lib import KeyValueRenderer
 
 if __name__ == "__main__":
     # Set up structured logging
