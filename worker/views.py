@@ -44,7 +44,7 @@ class WorkerCrawler(APIView):
         """
         """
         logger = structlog.get_logger(__name__).bind(data=request.data)
-        logger.info("worker_post_request_start")
+        logger.info("worker_post_request_start", path=request._request.get_full_path())
 
         # process it
         logger.info("worker_post_request_end")
@@ -53,8 +53,8 @@ class WorkerCrawler(APIView):
     def get(self, request):
         """
         """
-        logger = structlog.get_logger(__name__).bind(data=request.query_params.dict())
-        logger.info("worker_get_request_start")
+        logger = structlog.get_logger(__name__).bind(data=request.query_params)
+        logger.info("worker_get_request_start", get=request._request.GET, path=request._request.get_full_path(), meta=request._request.META)
 
         # process it
         logger.info("worker_get_request_end")
