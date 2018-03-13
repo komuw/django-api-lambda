@@ -107,7 +107,10 @@ Worker-function-role
         }
     ]
 }
-```                   
+```                       
+
+Also setup API gateway logging;                               
+https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html                       
 
 Postman collection: https://www.getpostman.com/collections/b97cc0bc9cd927bdd011
 
