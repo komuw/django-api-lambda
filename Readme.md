@@ -19,8 +19,7 @@ region = someAWSregion
 > `virtualenv .venv`                             
 > `source .venv/bin/activate`                            
 > `pip install -r dev_requirements.txt`                                   
-> `python app.py runserver 0.0.0.0:9090`                  
-> `docker ps -aq | xargs docker stop; docker run -it -p 0.0.0.0:5672:5672 rabbitmq:3.5.7-management`               
+> `python app.py runserver 0.0.0.0:9090`                                
 > `autopep8 --experimental --in-place -r -aaaaaa .`                          
 > `flake8 .`                        
 > to test out the app;
