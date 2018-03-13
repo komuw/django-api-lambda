@@ -42,11 +42,20 @@ class WorkerCrawler(APIView):
 
     def post(self, request):
         """
-        Return a list of all users.
         """
         logger = structlog.get_logger(__name__).bind(data=request.data)
-        logger.info("worker_request_start")
+        logger.info("worker_post_request_start")
 
         # process it
-        logger.info("worker_request_end")
+        logger.info("worker_post_request_end")
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    def get(self, request):
+        """
+        """
+        logger = structlog.get_logger(__name__).bind(data=request.query_params.dict())
+        logger.info("worker_get_request_start")
+
+        # process it
+        logger.info("worker_get_request_end")
         return Response(status=status.HTTP_202_ACCEPTED)

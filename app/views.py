@@ -52,7 +52,6 @@ class WebCrawler(APIView):
 
     def post(self, request):
         """
-        Return a list of all users.
         """
         logger = structlog.get_logger(__name__).bind(id=request.data['id'])
         logger.info("app_request_start", data=request.data)
