@@ -1,4 +1,4 @@
-# This sessions package is ripped from: https://github.com/gtaylor/django-dynamodb-sessions
+# This sessions package is inspired by: https://github.com/gtaylor/django-dynamodb-sessions
 # A few minor modifications have been added and some stuff removed.
 
 import time
